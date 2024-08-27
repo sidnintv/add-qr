@@ -2,7 +2,7 @@
 FROM python:3.12-slim
 
 # Устанавливаем необходимые зависимости
-RUN pip install --no-cache-dir pillow qrcode[pil]
+RUN pip install --no-cache-dir pillow qrcode[pil] moviepy
 
 # Указываем рабочую директорию внутри контейнера
 WORKDIR /app

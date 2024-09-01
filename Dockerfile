@@ -1,14 +1,14 @@
-# Используем официальный образ Python
+# Using the official Python image
 FROM python:3.12-slim
 
-# Устанавливаем необходимые зависимости
+# We install the necessary dependencies
 RUN pip install --no-cache-dir pillow qrcode[pil] moviepy
 
-# Указываем рабочую директорию внутри контейнера
+# Specifying the working directory inside the container
 WORKDIR /app
 
-# Копируем скрипт в контейнер
+# Copy the script to the container
 COPY add_qr.py .
 
-# Указываем команду по умолчанию
+# Specify the default command
 CMD ["python", "add_qr.py"]

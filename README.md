@@ -1,64 +1,64 @@
 # add-qr
 
-# Добавление QR-кода на изображение или видео с использованием Python и Docker
+# Adding a QR code to an image or video using Python and Docker
 
-Этот проект позволяет автоматически добавлять QR-код на изображение или видео. Проект написан на Python и упакован в Docker для удобства использования.
+This project allows you to automatically add a QR code to an image or video. The project is written in Python and packaged in Docker for ease of use.
 
-## Возможности
+## Features
 
-- Генерация QR-кода по указанному URL.
-- Автоматическое размещение QR-кода на изображении или видео.
-- Поддержка изменения размера QR-кода.
-- Сохранение оригинального звука при добавлении QR-кода в видео.
-- Возможность указания имени выходного файла, чтобы избежать перезаписи исходного.
+- Generation of a QR code at the specified URL.
+- Automatic placement of a QR code on an image or video.
+- Support for resizing the QR code.
+- Save the original sound when adding a QR code to a video.
+- The ability to specify the name of the output file to avoid overwriting the original one.
 
-## Установка и запуск
+## Installation and launch
 
-### Требования
+### Requirements
 
 - Docker
 
-### Сборка Docker-образа
+### Building a Docker image
 
-Перед началом использования необходимо собрать Docker-образ:
+Before using it, you need to build a Docker image:
 
 ```bash
 docker build -t add-qr .
 ```
 
-Запуск контейнера
-1. Добавление QR-кода на изображение
+Launching the container
+1. Adding a QR code to the image
 ```
 docker run --rm -v $(pwd):/app add-qr python add_qr.py image /app/<image_name> <qr_url> /app/<output_image_name>
 ```
-Пример:
+Example:
 ```
 docker run --rm -v $(pwd):/app add-qr python add_qr.py image /app/image.jpeg https://example.com /app/output_image.jpeg
 ```
-2. Добавление QR-кода на видео
+2. Adding a QR code to the video
 ```
 docker run --rm -v $(pwd):/app add-qr python add_qr.py video /app/<video_name> <qr_url> /app/<output_video_name>
 ```
-Пример:
+Example:
 ```
 docker run --rm -v $(pwd):/app add-qr python add_qr.py video /app/video.mp4 https://example.com /app/output_video.mp4
 ```
-Как работает
+How does it work?
 ```
-Скрипт поддерживает два режима:
+The script supports two modes:
 
-image - для добавления QR-кода на изображение.
-video - для добавления QR-кода на видео. При этом звук из оригинального видео сохраняется.
+image - to add a QR code to the image.
+video - to add a QR code to the video. At the same time, the audio from the original video is saved.
 
-Параметры:
-<image_name> или <video_name>: Путь к исходному файлу.
-<qr_url>: URL для генерации QR-кода.
-<output_image_name> или <output_video_name>: Путь для сохранения выходного файла.
+Parameters:
+<image_name> or <video_name>: The path to the source file.
+<qr_url>: URL for generating the QR code.
+<output_image_name> or <output_video_name>: The path to save the output file.
 
-Дополнительные параметры:
-При добавлении QR-кода на видео сохраняется оригинальный звук.
-QR-код генерируется в черно-белом формате для изображений и в формате RGB для видео, чтобы обеспечить совместимость.
+Additional parameters:
+When you add a QR code to a video, the original sound is saved.
+The QR code is generated in black and white format for images and in RGB format for videos to ensure compatibility.
 ```
-Лицензия:
+License:
 
-Этот проект распространяется под MIT License. Подробности см. в файле LICENSE.
+This project is distributed under the MIT License. For details, see the LICENSE file.

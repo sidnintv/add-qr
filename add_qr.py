@@ -33,7 +33,7 @@ def add_qr_to_image(image_path, qr_url, output_path=None):
         output_path = f"{base_name}_with_qr{ext}"
 
     image.save(output_path)
-    print(f"Изображение сохранено: {output_path}")
+    print(f"The image is saved: {output_path}")
 
 def add_qr_to_video(video_path, qr_url, output_path):
     qr_img = generate_qr_code(qr_url, size=(150, 150), convert_to_rgb=True)
@@ -43,19 +43,19 @@ def add_qr_to_video(video_path, qr_url, output_path):
 
     qr_clip = ImageClip("qr_temp.png").set_duration(video.duration).set_position(("right", "top")).set_start(0)
 
-    # Объединяем видео с QR-кодом и сохраняем вместе с оригинальным аудио
+    # We combine the video with the QR code and save it along with the original audio
     result = CompositeVideoClip([video, qr_clip])
-    result = result.set_audio(video.audio)  # Убедитесь, что звук сохранен
-
+    result = result.set_audio(video.audio)  # Make sure that the sound is saved
+    
     result.write_videofile(output_path, codec="libx264", audio_codec="aac", fps=video.fps)
 
     os.remove("qr_temp.png")
-    print(f"Видео сохранено: {output_path}")
+    print(f"The video is saved: {output_path}")
 
 if __name__ == "__main__":
     if len(sys.argv) < 4:
         print("Usage: python add_qr.py <mode> <file_path> <qr_url> [output_path]")
-        print("mode: 'image' или 'video'")
+        print("mode: 'image' or 'video'")
     else:
         mode = sys.argv[1]
         file_path = sys.argv[2]
@@ -70,4 +70,4 @@ if __name__ == "__main__":
                 output_path = f"{base_name}_with_qr{ext}"
             add_qr_to_video(file_path, qr_url, output_path)
         else:
-            print("Неверный режим. Используйте 'image' или 'video'.")
+            print("The wrong mode. Use 'image' or 'video'.")

@@ -2,7 +2,7 @@
 FROM python:3.12-slim
 
 # We install the necessary dependencies
-RUN pip install --no-cache-dir pillow qrcode[pil] moviepy
+RUN pip install --no-cache-dir pillow qrcode[pil] moviepy==1.0.3
 
 # Specifying the working directory inside the container
 WORKDIR /app
